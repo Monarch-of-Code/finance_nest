@@ -1,0 +1,140 @@
+# Finance App - Flutter Project Structure & Guidelines
+# Version: 1.0
+# Author: Monarch
+# Date: 2025-12-03
+
+# ------------------------------------------------------------
+# 1️⃣ Project Structure Overview
+# ------------------------------------------------------------
+# This structure is clean, modular, scalable, and follows
+# feature-based architecture with Clean Architecture principles.
+# Think of it as: Presentation (UI) → Domain (Logic) → Data (Backend)
+# All features live under 'features/' folder. Global providers go under 'app/'.
+# Shared widgets, utils, constants go under 'core/'.
+
+lib/
+├── main.dart                        # App entry point
+├── app/
+│    ├── router.dart                 # App-level routing
+│    ├── theme.dart                  # Theme and styling
+│    └── providers/                  # Global providers
+│         ├── auth_provider.dart     # Auth state provider (used everywhere)
+│         ├── theme_provider.dart    # App-wide theme provider
+│         └── ...                    # Other global providers if needed
+│
+├── core/                            # Global utilities, shared components
+│    ├── errors/                     # Custom error classes
+│    ├── utils/                      # Helper functions (formatting, date, math)
+│    ├── widgets/                    # Shared widgets (buttons, cards, etc.)
+│    └── constants/                  # App constants (colors, strings)
+│
+└── features/
+    ├── auth/
+    │    ├── data/                 # API + repository layer
+    │    │     ├── auth_api.dart
+    │    │     └── auth_repository.dart
+    │    │
+    │    ├── domain/               # Business logic
+    │    │     ├── user_model.dart
+    │    │     ├── auth_service.dart
+    │    │     └── validators.dart
+    │    │
+    │    └── presentation/         # UI layer
+    │          ├── login_screen.dart
+    │          ├── signup_screen.dart
+    │          ├── widgets/        # Feature-specific small widgets
+    │          └── auth_controller.dart # Riverpod provider
+    │
+    ├── wallets/
+    │    ├── data/
+    │    │     ├── wallet_api.dart
+    │    │     └── wallet_repository.dart
+    │    │
+    │    ├── domain/
+    │    │     ├── wallet_model.dart
+    │    │     └── wallet_service.dart
+    │    │
+    │    └── presentation/
+    │          ├── wallet_list_screen.dart
+    │          ├── add_wallet_screen.dart
+    │          ├── widgets/
+    │          └── wallet_controller.dart
+    │
+    ├── transactions/
+    │    ├── data/
+    │    │     ├── transaction_api.dart
+    │    │     └── transaction_repository.dart
+    │    │
+    │    ├── domain/
+    │    │     ├── transaction_model.dart
+    │    │     └── transaction_service.dart
+    │    │
+    │    └── presentation/
+    │          ├── transaction_list_screen.dart
+    │          ├── add_transaction_screen.dart
+    │          ├── widgets/
+    │          └── transaction_controller.dart
+    │
+    └── reports/
+            ├── data/
+            │     ├── report_api.dart
+            │     └── report_repository.dart
+            │
+            ├── domain/
+            │     ├── report_model.dart
+            │     └── report_service.dart
+            │
+            └── presentation/
+                ├── monthly_report_screen.dart
+                ├── widgets/
+                └── report_controller.dart
+
+# ------------------------------------------------------------
+# 2️⃣ Data Flow / Layer Rules
+# ------------------------------------------------------------
+# 1. Presentation layer (screens/widgets) never calls API directly.
+# 2. Presentation calls Domain (services) for business logic.
+# 3. Domain calls Data layer (repository) to fetch/update backend data.
+# 4. Data layer communicates with backend (custom API / Supabase).
+# 5. Backend responds → Data layer → Domain → Presentation → UI updates.
+
+# ------------------------------------------------------------
+# 3️⃣ Naming Conventions
+# ------------------------------------------------------------
+# - Files: snake_case.dart
+# - Classes: UpperCamelCase
+# - Providers/Controllers: end with _controller.dart or _provider.dart
+# - Models/Entities: end with _model.dart
+# - Services: end with _service.dart
+# - Repositories: end with _repository.dart
+# - Screens: end with _screen.dart
+# - Widgets: end with _widget.dart
+
+# ------------------------------------------------------------
+# 4️⃣ Workflow Rules
+# ------------------------------------------------------------
+# 1. Always read the file fully before making any changes.
+# 2. Never put all providers in one file; split by feature.
+# 3. Only global providers (Auth, Theme, Config) go in app/providers/.
+# 4. Use Riverpod for all state management.
+# 5. Domain layer handles validation/business logic, NOT UI.
+# 6. Data layer only handles backend communication, no logic.
+# 7. When adding a new feature, create the full feature folder with data/domain/presentation.
+# 8. MVP first: Auth, Wallets, Transactions, Dashboard.
+# 9. Stretch goals later: Reports, PDF export, Transfers, Themes.
+# 10. Testing: Test each layer independently before integrating.
+
+# ------------------------------------------------------------
+# 5️⃣ Miscellaneous Advice
+# ------------------------------------------------------------
+# - Keep folder structure modular. Each feature should be self-contained.
+# - Avoid spaghetti code by never calling backend/API directly from UI.
+# - Think “small responsibilities”: one provider, one controller, one service does one thing.
+# - Document each provider/service with comments.
+# - Use shared widgets/utils in core/ only for truly common functionality.
+# - MVP is your battlefield. Don’t get distracted with fancy features.
+# - Always structure new features the same way to maintain consistency.
+
+# ------------------------------------------------------------
+# End of .cursorrules
+# ------------------------------------------------------------

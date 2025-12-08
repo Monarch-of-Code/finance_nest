@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "figma-desktop": {
+      "url": "http://127.0.0.1:3845/mcp",
+      "description": "Figma Desktop MCP Server (Local - requires Figma desktop app)"
+    },
+    "figma-remote": {
+      "url": "https://mcp.figma.com/mcp",
+      "description": "Figma Remote MCP Server (Cloud-based)"
+    }
+  }
+}
+
