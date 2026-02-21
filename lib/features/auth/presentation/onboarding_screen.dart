@@ -34,7 +34,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       imageAsset: 'assets/images/img-1.png',
     ),
     OnboardingPage(
-      title: '¿Are You Ready To Take Control Of Your Finances?',
+      title: 'Are You Ready To Take Control Of Your Finances?',
       imageAsset: 'assets/images/img-2.png',
     ),
   ];

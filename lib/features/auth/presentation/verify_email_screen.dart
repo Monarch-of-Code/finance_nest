@@ -6,7 +6,8 @@ import '../../../core/constants/app_fonts.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/exit_confirmation_dialog.dart';
 import '../../../core/utils/page_route_utils.dart';
-import '../../../core/widgets/widget_showcase_screen.dart';
+// import '../../../core/widgets/widget_showcase_screen.dart';
+import '../../home/presentation/home_screen.dart';
 import 'new_password_screen.dart';
 
 /// Verify Email screen for email verification with 6-digit code
@@ -73,7 +74,7 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
         } else {
           Navigator.pushReplacement(
             context,
-            createSlideRoute(const WidgetShowcaseScreen()),
+            createSlideRoute(const HomeScreen()),
           );
         }
         return;
@@ -100,7 +101,7 @@ class _VerifyEmailScreenState extends ConsumerState<VerifyEmailScreen> {
             // Navigate to widget showcase screen after successful verification
             Navigator.pushReplacement(
               context,
-              createSlideRoute(const WidgetShowcaseScreen()),
+              createSlideRoute(const HomeScreen()),
             );
           }
         }
